@@ -1,4 +1,8 @@
 pipeline {
+    parameters {
+        choice(name: 'VERSION', choices: ['1.0', '1.1', '1.2'], description: 'versions of package')
+        booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
+    }
     agent any
 
     stages {
@@ -8,6 +12,11 @@ pipeline {
             }
         }
         stage('Test') {
+            when {
+                expression {
+                    params.executeTest == true
+                }
+            }
             steps {
                 sh 'python3 test.py'
             }
@@ -15,6 +24,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                echo "Deploying ${params.VERSION}"
             }
         }
     }
