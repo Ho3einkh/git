@@ -23,8 +23,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                // echo 'Deploying....'
-                sh "gh release create ${params.VERSION}"
+                echo 'Deploying....'
+                // sh "gh release create ${params.VERSION}"
                 echo "Deploying Version: ${params.VERSION}"
             }
         }
