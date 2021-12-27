@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-        choice(name: 'VERSION', choices: ['1.0', '1.1', '1.2'], description: 'versions of package')
+        choice(name: 'VERSION', choices: ['v1.0', 'v1.1', 'v1.2', 'v1.3'], description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
     }
     agent any
@@ -32,6 +32,7 @@ pipeline {
                 echo 'Deploying....'
                 // sh "gh release create ${params.VERSION}"
                 echo "Deploying Version: ${params.VERSION}"
+                sh("gh release create ${params.VERSION}")
             }
         }
     }
