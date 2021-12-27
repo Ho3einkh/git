@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
+                sh("git tag --sort version:refname | tail -1")
             }
         }
         stage('Test') {
