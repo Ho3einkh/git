@@ -3,3 +3,6 @@ def hi():
 
 def bye():
     return "Goodbye!"
+
+def hello_again():
+    return "hello again!"
