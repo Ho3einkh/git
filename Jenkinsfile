@@ -2,7 +2,7 @@ pipeline {
     parameters {
         choice(name: 'VERSION', choices: ['v1.4.1', 'v1.5', 'v1.6', 'v1.7'], description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
-        booleanParam(name: 'executeRelease' , defaultValue: true, description: 'Create Release')
+        booleanParam(name: 'executeRelease' , defaultValue: false, description: 'Create Release')
     }
     environment {
         // The MY_TOKEN environment variable will be assigned
