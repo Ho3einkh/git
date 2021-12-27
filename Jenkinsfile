@@ -1,12 +1,6 @@
 pipeline {
-    environment { 
-        CC = sh (
-            script: 'git tag --sort version:refname',
-            returnStdout: true
-        ).trim()
-    }
     parameters {
-        choice(name: 'VERSION', choices: "${CC}", description: 'versions of package')
+        choice(name: 'VERSION', choices: ['1.0', '1.1', '1.2'], description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
     }
     agent any
@@ -14,14 +8,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Building.. ${CC}"
+                echo 'Building..'
+                sh('gh --version')
                 // GIT_COMMIT_EMAIL = sh (
                 //         script: 'git tag --sort version:refname',
                 //         returnStdout: true
                 //     ).trim()
                 // echo "Git committer email: ${GIT_COMMIT_EMAIL}"
-                // sh(script: 'git tag --sort version:refname')
-                // def output = sh returnStdout: true, script: 'git tag --sort version:refname'
             }
         }
         stage('Test') {
