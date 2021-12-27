@@ -1,8 +1,3 @@
-def version(){
-    versions = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
-    return versions
-}
-
 pipeline {
     parameters {
         choice(name: 'VERSION', choices: version(), description: 'versions of package')
@@ -34,4 +29,9 @@ pipeline {
             }
         }
     }
+}
+
+def version(){
+    versions = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
+    return versions
 }
