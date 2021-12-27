@@ -1,4 +1,11 @@
 pipeline {
+    script {
+        GIT_COMMIT_EMAIL = sh (
+                script: 'git tag --sort version:refname',
+                returnStdout: true
+            ).trim()
+        echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+    }
     parameters {
         choice(name: 'VERSION', choices: ['0.1'], description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
@@ -9,7 +16,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                params.VERSION = sh("git tag --sort version:refname")
             }
         }
         stage('Test') {
