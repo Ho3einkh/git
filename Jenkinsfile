@@ -6,7 +6,7 @@ pipeline {
         ).trim()
     }
     parameters {
-        choice(name: 'VERSION', choices: CC, description: 'versions of package')
+        choice(name: 'VERSION', choices: env.CC, description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
     }
     agent any
