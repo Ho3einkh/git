@@ -32,7 +32,7 @@ pipeline {
                 echo 'Deploying....'
                 // sh "gh release create ${params.VERSION}"
                 echo "Deploying Version: ${params.VERSION}"
-                withCredentials([string(credentialsId: 'mytoken', variable: 'TOKEN')]) {
+                withCredentials([string(credentialsId: 'myToken1', variable: 'TOKEN')]) {
                     sh("gh auth login --with-token $TOKEN")
                     sh("gh release create ${params.VERSION}")
                 }
