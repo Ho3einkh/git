@@ -1,12 +1,11 @@
 def version(){
-    return ['1.0', '1.1', '1.2']
+    versions = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
+    return versions
 }
-
-def foo = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
 
 pipeline {
     parameters {
-        choice(name: 'VERSION', choices: foo, description: 'versions of package')
+        choice(name: 'VERSION', choices: version(), description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
     }
     agent any
