@@ -32,6 +32,7 @@ pipeline {
                 echo 'Deploying....'
                 // sh "gh release create ${params.VERSION}"
                 echo "Deploying Version: ${params.VERSION}"
+                sh("gh auth login")
                 sh("gh release create ${params.VERSION}")
             }
         }
