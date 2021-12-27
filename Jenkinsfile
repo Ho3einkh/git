@@ -1,6 +1,6 @@
 pipeline {
     environment { 
-        CC = 'clang'
+        CC = sh(script: 'git tag --sort version:refname')
     }
     parameters {
         choice(name: 'VERSION', choices: ['0.1'], description: 'versions of package')
