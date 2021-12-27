@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo "Deploying Version: ${params.VERSION}"
                 // do Authentication
-                sh("gh auth login --with-token < ${MY_TOKEN}")
+                sh('gh auth login --with-token < $MY_TOKEN')
                 // Create Next Release
                 sh("gh release create ${params.VERSION}")
             }
