@@ -1,6 +1,9 @@
 pipeline {
     environment { 
-        CC = sh(script: 'git tag --sort version:refname')
+        CC = sh (
+            script: 'git tag --sort version:refname',
+            returnStdout: true
+        ).trim()
     }
     parameters {
         choice(name: 'VERSION', choices: ['0.1'], description: 'versions of package')
