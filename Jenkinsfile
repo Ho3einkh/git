@@ -14,7 +14,8 @@ pipeline {
                 //         returnStdout: true
                 //     ).trim()
                 // echo "Git committer email: ${GIT_COMMIT_EMAIL}"
-                sh(script: 'git tag --sort version:refname')
+                // sh(script: 'git tag --sort version:refname')
+                def output = sh returnStdout: true, script: 'git tag --sort version:refname'
             }
         }
         stage('Test') {
