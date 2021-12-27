@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-        choice(name: 'VERSION', choices: ['v1.0', 'v1.1', 'v1.2', 'v1.3'], description: 'versions of package')
+        choice(name: 'VERSION', choices: ['v1.4', 'v1.5', 'v1.6', 'v1.7'], description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
     }
     environment {
