@@ -9,7 +9,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh("git tag --sort version:refname | tail -1")
+                def v = sh("git tag --sort version:refname")
+                echo v
             }
         }
         stage('Test') {
