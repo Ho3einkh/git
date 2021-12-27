@@ -9,11 +9,12 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                GIT_COMMIT_EMAIL = sh (
-                        script: 'git tag --sort version:refname',
-                        returnStdout: true
-                    ).trim()
-                echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+                // GIT_COMMIT_EMAIL = sh (
+                //         script: 'git tag --sort version:refname',
+                //         returnStdout: true
+                //     ).trim()
+                // echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+                sh(script: 'git tag --sort version:refname')
             }
         }
         stage('Test') {
