@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-        choice(name: 'VERSION', choices: ['1.0', '1.1', '1.2'], description: 'versions of package')
+        choice(name: 'VERSION', choices: ['0.1'], description: 'versions of package')
         booleanParam(name: 'executeTest', defaultValue: true, description: 'Test')
     }
     agent any
@@ -9,8 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                def v = sh("git tag --sort version:refname")
-                echo v
+                params.VERSION = sh("git tag --sort version:refname")
             }
         }
         stage('Test') {
