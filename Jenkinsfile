@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 // sh "gh release create ${params.VERSION}"
-                echo 'git tag'
+                sh 'git tag'
                 echo "Deploying Version: ${params.VERSION}"
             }
         }
